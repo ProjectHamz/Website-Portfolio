@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - Hamza Alziq</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="assets/logo.gif" alt="Logo" class="logo-image">
+            </div>
+            <button class="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="resume.html">Resume</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="about.html">About me</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="resume-section">
+            <h1 class="resume-title">Resume</h1>
+            
+            <div class="resume-container">
+                <div class="resume-preview">
+                    <div id="pdf-viewer">
+                        <object data="assets/HamzahAlziq_Resume.pdf" type="application/pdf" width="100%" height="800px">
+                        </object>
+                    </div>
+                </div>
+                
+                <div class="resume-download">
+                    <a href="assets/HamzahAlziq_Resume.pdf" download class="download-btn">
+                        <img src="assets/resume-icon.png" alt="Download" class="download-icon">
+                        Download Resume
+                    </a>
+                    <p class="download-info">PDF format, opens in a new window</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Hamza Alziq</p>
+            <nav class="footer-links">
+                <a href="#">Privacy Statement</a>
+                <a href="#">Terms of service</a>
+                <a href="https://linkedin.com/in/hamzah-alziq" target="_blank" class="social-link">
+                    <img src="assets/linkedin.png" alt="LinkedIn">
+                    LinkedIn
+                </a>
+                <a href="https://github.com/ProjectHamz" target="_blank" class="social-link">
+                    <img src="assets/github-icon.png" alt="GitHub">
+                    GitHub
+                </a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="js/animations.js"></script>
+</body>
+</html> 
