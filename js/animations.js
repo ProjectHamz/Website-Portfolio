@@ -55,24 +55,57 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle card touch interactions on mobile
     const cards = document.querySelectorAll('.card');
     
+    let touchStartY = 0;
+    let touchStartX = 0;
+    let isSwiping = false;
+
     cards.forEach(card => {
-        card.addEventListener('touchstart', function(e) {
-            e.preventDefault();
-            // Remove touched class from all other cards
-            cards.forEach(c => {
-                if (c !== card) c.classList.remove('touched');
-            });
-            // Toggle touched class on current card
-            this.classList.toggle('touched');
+        card.addEventListener('touchstart', (e) => {
+            touchStartY = e.touches[0].clientY;
+            touchStartX = e.touches[0].clientX;
+            isSwiping = false;
+        }, { passive: true });
+
+        card.addEventListener('touchmove', (e) => {
+            if (!isSwiping) {
+                const touchCurrentX = e.touches[0].clientX;
+                const touchCurrentY = e.touches[0].clientY;
+                const deltaX = Math.abs(touchCurrentX - touchStartX);
+                const deltaY = Math.abs(touchCurrentY - touchStartY);
+
+                // If vertical scroll is greater than horizontal movement, let the browser handle it
+                if (deltaY > deltaX && deltaY > 10) {
+                    isSwiping = true;
+                }
+            }
+        }, { passive: true });
+
+        card.addEventListener('touchend', (e) => {
+            if (!isSwiping) {
+                e.preventDefault();
+                const cardInner = card.querySelector('.card-inner');
+                cardInner.style.transform = cardInner.style.transform === 'rotateY(180deg)' ? 'rotateY(0deg)' : 'rotateY(180deg)';
+            }
+        });
+
+        // For desktop clicks
+        card.addEventListener('click', (e) => {
+            if (window.innerWidth > 768) {
+                const cardInner = card.querySelector('.card-inner');
+                cardInner.style.transform = cardInner.style.transform === 'rotateY(180deg)' ? 'rotateY(0deg)' : 'rotateY(180deg)';
+            }
         });
     });
 
-    // Close card when touching outside
-    document.addEventListener('touchstart', function(e) {
+    // Close card when clicking outside
+    document.addEventListener('touchstart', (e) => {
         if (!e.target.closest('.card')) {
-            cards.forEach(card => card.classList.remove('touched'));
+            cards.forEach(card => {
+                const cardInner = card.querySelector('.card-inner');
+                cardInner.style.transform = 'rotateY(0deg)';
+            });
         }
-    });
+    }, { passive: true });
 
     // Dropdown Menu Functionality
     const dropdown = document.querySelector('.dropdown');
